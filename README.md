@@ -1,12 +1,16 @@
 # Pytoys
 
-## Setup & Installtion
+## Setup
 
 Make sure you have the latest version of Python installed.
+
+### Clone repository
 
 ```bash
 git clone <repo-url>
 ```
+
+### Dependencies
 
 ```bash
 pip install flask
@@ -20,6 +24,6 @@ pip install flask-sqlalchemy
 python main.py
 ```
 
-## Viewing The App
+## Default local url
 
-Go to `http://127.0.0.1:5000`
+`http://127.0.0.1:5000`
