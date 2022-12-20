@@ -1,12 +1,14 @@
 from . import db
 from flask_login import UserMixin
+from sqlalchemy.sql import func
 
-class Product(db.model):
+class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     pictures = db.Column(db.String(500)) # Maybe to be created as own model with relationship to this one
     description = db.Column(db.String(5000))
-    shipping_fee = db.Column(db.Float)
+    shipping_fee = db.Column(db.Integer)
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class User(db.Model, UserMixin):
