@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock%}
 {% block content %}
+    <h1 align="center">Products</h1>
+    <ul class="list-group list-group-flush" id="products">
+        {% for product in user.products %}
+        <li class="list-group-item">{{ product.description }}
+            <button type="button" class="close" onClick="deleteProduct({{ product.id }})">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </li>
+        {% endfor %}
+    <form method="POST">
+        <textarea name="product" id="product" class="form-control"></textarea>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Add product</button>
+        </div>
+    <form>
+
     <div class="bg-image" 
      style="
      background: url(../static/img/harry_gotter.jpg) no-repeat center center;
