@@ -5,11 +5,13 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 DB_NAME = 'database.db'
+UPLOAD_FOLDER = 'website/static/img'
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'zajeoazu!ecàapzh'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     db.init_app(app)
 
     from .views import views
@@ -31,7 +33,6 @@ def create_app():
         return User.query.get(int(id))
 
     return app
-
 
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
