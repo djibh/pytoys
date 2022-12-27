@@ -1,28 +1,97 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock%}
 {% block content %}
-    <h1 align="center">Products</h1>
-    <ul class="list-group list-group-flush" id="products">
-        {% for product in user.products %}
-        <li class="list-group-item">{{ product.description }}
-            <button type="button" class="close" onClick="deleteProduct({{ product.id }})">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </li>
-        {% endfor %}
-    <form method="POST">
-        <textarea name="product" id="product" class="form-control"></textarea>
-        <br />
-        <div align="center">
-            <button type="submit" class="btn btn-primary">Add product</button>
-        </div>
-    <form>
+    <div class="container my-4">
+        <div align="right" style="color: green;">Logged in as {{ user.email }}</div>
+        <h1 align="center">Products</h1>
 
-    <div class="bg-image" 
-     style="
-     background: url(../static/img/harry_gotter.jpg) no-repeat center center;
-     background-size: 70% 70%;
-     height: 100vh;
-     ">
+        <br />
+        <div class="container overflow-hidden" id="products-grid">
+            <div class="row row-cols-3 g-4 justify-content-center">
+                {% for product in products %} 
+                <div class="col" style="max-width:250px">
+                    <div align="center" class="bg-dark rounded">
+                        <img src="../static/img/logo3.png" alt="photo" height="130px">
+                        <button type="button" class="btn-close btn-close-white pt-4" style="font-size:14px; position:absolute;" aria-label="Close" onClick="deleteProduct({{ product.id }})"></button>
+                    </div>
+                    <div class="py-2">
+                        <div class="fw-bold"> {{ product.title }} </div> <!-- product.title -->
+                        <span>{{ product.category }}</span><br />
+                        <span>{{ product.city }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        
+
+        <br />
+        <form method="POST">
+            <div style="max-width:600px;margin:auto;">
+                <h3 align="center" style="margin-top:30px">Ajouter un produit</h3>
+                <div class="form-group">
+                    <label for="product-title">Titre de l'annonce</label>
+                    <input type="text" class="form-control" id="product-title" name="product-title"/>
+                </div>
+                <br />
+
+                <label for="product-category">Catégorie</label>
+                <select class="form-select" aria-label="Default select example" name="product-category">
+                    <option selected></option>
+                    <option value="Jouets">Jouets</option>
+                    <option value="Peluches">Peluches</option>
+                    <option value="Vêtements">Vêtements</option>
+                </select>
+
+                <br />
+                <div class="form-group">
+                    <label for="product-description">Descriptif</label>
+                    <textarea name="product-description" class="form-control" id="product-description" name="product-description" rows="8" style="resize:none;"/></textarea>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="product-city">Code Postal</label>
+                    <input type="text" class="form-control" id="product-city" name="product-city"/>
+                </div>
+                <br />
+
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                </svg>
+                <span>Ajouter des photos</span>
+                <br /><br />
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+        </form> 
+
+        <br />
+        <ul class="list-group list-group-flush" id="products">
+            {% for product in user.products %}
+            <li class="list-group-item d-flex justify-content-between">{{ product.id }} {{ product.title }}
+                <button type="button" class="btn-close" style="font-size:10px" aria-label="Close" onClick="deleteProduct({{ product.id }})"></button>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="container overflow-hidden" id="products-grid">
+            <div class="row row-cols-3 g-4 justify-content-center">
+                {% for product in user.products %} 
+                <div class="col" style="max-width:250px">
+                    <div align="center" class="bg-dark rounded">
+                        <img src="../static/img/logo3.png" alt="photo" height="130px">
+                        <button type="button" class="btn-close btn-close-white pt-4" style="font-size:14px; position:absolute;" aria-label="Close" onClick="deleteProduct({{ product.id }})"></button>
+                    </div>
+                    <div class="py-2">
+                        <div class="fw-bold"> {{ product.title }} </div> <!-- product.title -->
+                        <span>{{ product.category }}</span><br />
+                        <span>{{ product.city }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
     </div>
+
 {% endblock%}

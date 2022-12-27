@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <header class="p-4 text-bg-dark">
+        <header class="px-5 py-4 text-bg-dark">
             <div class="row">
                 <div class="col d-flex">
                     <a class="d-flex align-items-center text-white text-decoration-none" href="/">
@@ -23,13 +23,14 @@
                 </div>
 
                 <!-- Search -->
-                <form class="col nav justify-content-center" role="search">
+                <form class="col-4 nav" role="search">
                     <input type="search" class="form-control justify-content-center form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
                 </form>
 
                 <div class="col text-end">
                     {% if user.is_authenticated %}
                     <button type="button" class="btn btn-outline-light me-2" id="home" onclick="location.href='/'">Home</button>
+                    <button type="button" class="btn btn-outline-light me-2" id="account" onclick="location.href='/account'">Account</button>
                     <button type="button" class="btn btn-warning" id="logout" onclick="location.href='/logout'">Logout</button>
                     {% else %}
                     <button type="button" class="btn btn-outline-light me-2" id="login" onclick="location.href='/login'">Login</button>
@@ -44,23 +45,20 @@
         <!-- ######################################################### -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-        {% for category, message in messages %}
-        {% if category == 'error' %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
         <div class="alert alert-danger alter-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="close" data-bs-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" style="font-size:10px" aria-label="Close" data-bs-dismiss="alert">
+               </button>
         </div>
         {% else %}
         <div class="alert alert-success alter-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="close" data-bs-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" style="font-size:10px" aria-label="Close" data-bs-dismiss="alert"></button>
         </div>
-        {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
         {% endwith %}
         

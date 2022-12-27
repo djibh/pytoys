@@ -9,18 +9,25 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        product = request.form.get('product')
 
-        if len(product) < 1:
+    get_all_products = db.session.query(Product).all()
+
+    if request.method == 'POST':
+        product_title = request.form.get('product-title')
+        product_description = request.form.get('product-description')
+        product_category = request.form.get('product-category')
+        product_city = request.form.get('product-city')
+
+
+        if len(product_title) < 1:
             flash('Product\'s description is too short!', category='error')
         else:
-            new_product = Product(description=product, user_id=current_user.id)
+            new_product = Product(title=product_title, description=product_description, city=product_city, category=product_category, user_id=current_user.id)
             db.session.add(new_product)
             db.session.commit()
             flash('Product added!', category='success')
 
-    return render_template("home.html", user=current_user)
+    return render_template("home.html", user=current_user, products=get_all_products)
 
 @views.route('/delete-product', methods=['POST'])
 def delete_product():

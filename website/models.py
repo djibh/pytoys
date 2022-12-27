@@ -7,6 +7,8 @@ class Product(db.Model):
     title = db.Column(db.String(100))
     pictures = db.Column(db.String(500)) # Maybe to be created as own model with relationship to this one
     description = db.Column(db.String(5000))
+    city = db.Column(db.String(150))
+    category = db.Column(db.String(100))
     shipping_fee = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
