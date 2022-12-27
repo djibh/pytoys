@@ -3,12 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
+app = Flask(__name__)
+
 db = SQLAlchemy()
 DB_NAME = 'database.db'
 UPLOAD_FOLDER = 'website/static/img'
 
 def create_app():
-    app = Flask(__name__)
     app.config['SECRET_KEY'] = 'zajeoazu!ecàapzh'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

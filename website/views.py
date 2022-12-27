@@ -1,8 +1,8 @@
-from flask import Blueprint, current_app as app, render_template, request, flash, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from .models import Product
-from . import db
+from . import db, app
 
 import os, json
 
