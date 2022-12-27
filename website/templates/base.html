@@ -22,11 +22,17 @@
                     </a>
                 </div>
 
-                <!-- Search -->
+                <!-- ######################################################### -->
+                <!-- Search Bar -->
+                <!-- ######################################################### -->
                 <form class="col-4 nav" role="search">
                     <input type="search" class="form-control justify-content-center form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
                 </form>
+                
 
+                <!-- ######################################################### -->
+                <!-- Nav buttons -->
+                <!-- ######################################################### -->
                 <div class="col text-end">
                     {% if user.is_authenticated %}
                     <button type="button" class="btn btn-outline-light me-2" id="home" onclick="location.href='/'">Home</button>

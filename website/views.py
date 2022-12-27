@@ -9,7 +9,6 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-
     get_all_products = db.session.query(Product).all()
 
     if request.method == 'POST':

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
+from .models import User, Product
 from . import db
 
 
@@ -62,3 +62,22 @@ def sign_up():
             return redirect(url_for('views.home'))
 
     return render_template("sign_up.html", user=current_user)
+
+@auth.route('/account', methods=['GET', 'POST'])
+def account():
+    if request.method == 'POST':
+        product_title = request.form.get('product-title')
+        product_description = request.form.get('product-description')
+        product_category = request.form.get('product-category')
+        product_city = request.form.get('product-city')
+
+
+        if len(product_title) < 1:
+            flash('Product\'s description is too short!', category='error')
+        else:
+            new_product = Product(title=product_title, description=product_description, city=product_city, category=product_category, user_id=current_user.id)
+            db.session.add(new_product)
+            db.session.commit()
+            flash('Product added!', category='success')
+
+    return render_template("account.html", user=current_user)
