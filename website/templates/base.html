@@ -16,10 +16,10 @@
     <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo" width="60" class="d-inline-block align-text-top">
+                    <img src="../static/img/logo.png" alt="logo" width="60px" class="d-inline-block align-text-top">
                 </a>
                 <!-- ######################################################### -->
                 <!-- Search Bar -->
@@ -32,7 +32,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav" aria-expanded="false">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav" style="font-size: 1.25rem">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
