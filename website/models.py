@@ -5,7 +5,7 @@ from . import db
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    pictures = db.Column(db.String(500)) # Maybe to be created as own model with relationship to this one
+    pictures = db.Column(db.String(150))
     description = db.Column(db.String(5000))
     city = db.Column(db.String(150))
     category = db.Column(db.String(100))

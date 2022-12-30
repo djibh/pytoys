@@ -6,11 +6,11 @@ from . import db, app
 
 import os, json
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
-
 views = Blueprint('views', __name__)
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg'}
+filename = ""
 
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/', methods=['GET'])
 @login_required
 def home():
     get_all_products = db.session.query(Product).all()
@@ -20,7 +20,7 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def file_validation():
+def upload_picture():
     # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -35,13 +35,14 @@ def file_validation():
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
+            global filename
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('views.home', name=filename))
 
 
 @views.route('/account', methods=['POST', 'GET'])
-def upload_file():
+def upload_product():
     if request.method == 'POST':
         product_title = request.form.get('product-title')
         product_description = request.form.get('product-description')
@@ -51,8 +52,9 @@ def upload_file():
         if len(product_title) < 1:
             flash('Product\'s description is too short!', category='error')
         else:
-            new_product = Product(title=product_title, description=product_description, city=product_city, category=product_category, user_id=current_user.id)
-            file_validation()
+            upload_picture()
+            new_product = Product(title=product_title, description=product_description, pictures=filename, city=product_city, category=product_category, user_id=current_user.id)
+            print(new_product)
             db.session.add(new_product)
             db.session.commit()
             flash('Product added!', category='success')
