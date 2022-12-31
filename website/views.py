@@ -62,6 +62,14 @@ def upload_product():
     return render_template("account.html", user=current_user)
 
 
+@views.route('/product/<id>', methods=['POST', 'GET'])
+def show_product(id):
+    product_id = id
+    product = Product.query.filter_by(id=product_id).first()
+
+    return render_template("product.html", user=current_user, product=product)
+
+
 @views.route('/delete-product', methods=['POST'])
 def delete_product():
     data = json.loads(request.data)

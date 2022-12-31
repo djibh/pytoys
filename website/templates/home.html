@@ -9,16 +9,18 @@
         <div class="container" style="max-width: 960px" id="products-grid">
             <div class="row row-cols-2 g-4 justify-content-center">
                 {% for product in products %} 
-                <div class="col" style="max-width:240px;">
+                <a href="/product/{{ product.id }}" style="max-width:240px; color: #333; text-decoration: none;">
+                <div class="col">
                     <div style="height: 240px;" class="bg-dark rounded">
                         <img align="center" class="rounded" style="width: 100%; height:100%; object-fit: cover;" src="{{ url_for('static', filename=('img/' + product.pictures)) }}" alt="photo" height="130px">
                     </div>
                     <div class="py-2" style="width:180px;">
-                        <div class="fw-bold"> {{ product.title }} </div> <!-- product.title -->
+                        <div class="fw-bold" style="color: #0dcaf0"> {{ product.title }} </div> <!-- product.title -->
                         <span>{{ product.category }}</span><br />
                         <span>{{ product.city }}</span>
                     </div>
                 </div>
+                </a>
                 {% endfor %}
             </div>
         </div>        
