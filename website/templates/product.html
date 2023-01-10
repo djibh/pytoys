@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Product{% endblock%}
 {% block content %}
-    <div class="container my-4">
-        
-
+    <div class="container my-4"> 
         <br />
         <div class="container" style="max-width: 960px" id="products-grid">
             <div class="row row-cols-2 g-4">
@@ -12,7 +10,7 @@
                         <img align="center" class="rounded" style="width: 100%; height:100%; object-fit: cover;" src="{{ url_for('static', filename=('img/' + product.pictures)) }}" alt="photo" height="130px">
                     </div>
                 </a>
-                <div class="col py-0">
+                <div id ="product-info" class="col pb-0">
                     <h2>{{ product.title}}</h2><br />
                     <div class="mb-4">
                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -44,9 +42,14 @@
                         </svg>
                         <span class="mx-2">{{ product.city }}</span>
                     </div>
-                </div>
+                </div> 
+            </div>
+            <br />
+            <div id="product-desc" class="row">
+                <hr style="border-top: 3px solid; border-color: rgb(13,202,240); border-radius: 2px;">
+                <h4>Description</h4>
+                <p>{{ product.description }}</p>
             </div>
         </div>        
     </div>
-
 {% endblock%}

@@ -14,44 +14,43 @@
     </head>
 
     <body>
+        <header style="z-index:5;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+                <div class="container-fluid px-5">
+                    <a class="navbar-brand" href="/">
+                        <img src="../static/img/logo.png" alt="logo" width="60px" class="d-inline-block align-text-top">
+                    </a>
+                    <!-- ######################################################### -->
+                    <!-- Search Bar -->
+                    <!-- ######################################################### -->
+                    <form class="col-4 nav" role="search">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
 
-    <header style="z-index:5;">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-            <div class="container-fluid px-5">
-                <a class="navbar-brand" href="/">
-                    <img src="../static/img/logo.png" alt="logo" width="60px" class="d-inline-block align-text-top">
-                </a>
-                <!-- ######################################################### -->
-                <!-- Search Bar -->
-                <!-- ######################################################### -->
-                <form class="col-4 nav" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav" aria-expanded="false">
-                    <ul class="navbar-nav" style="font-size: 1.25rem">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/account">Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
-                        </li>
-                        {% else %}
-                        <button type="button" class="btn btn-outline-dark me-2" id="login" onclick="location.href='/login'">Login</button>
-                        <button type="button" class="btn btn-warning" id="signup" onclick="location.href='/signup'">Sign up</button>
-                        {% endif %}
-                    </ul>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav" aria-expanded="false">
+                        <ul class="navbar-nav" style="font-size: 1.25rem">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/account">Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                            {% else %}
+                            <button type="button" class="btn btn-outline-dark me-2" id="login" onclick="location.href='/login'">Login</button>
+                            <button type="button" class="btn btn-warning" id="signup" onclick="location.href='/signup'">Sign up</button>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
         
         <!-- ######################################################### -->
@@ -96,6 +95,5 @@
         type="text/javascript"
         src="{{ url_for('static', filename='index.js') }}"
         ></script>
-
     </body>
 </html>
