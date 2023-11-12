@@ -3,7 +3,6 @@
 {% block content %}
     <div class="container my-4">
         <div align="right" style="color: green;">Logged in as {{ user.email }}</div>
-        <!-- <h1 align="center">Products</h1> -->
 
         <br />
         <div class="container" style="max-width: 960px" id="products-grid">
@@ -15,7 +14,7 @@
                         <img align="center" class="rounded" style="width: 100%; height:100%; object-fit: cover;" src="{{ url_for('static', filename=('img/' + product.pictures)) }}" alt="photo" height="130px">
                     </div>
                     <div class="py-2" style="width:180px;">
-                        <div class="fw-bold" style="color: #0dcaf0"> {{ product.title }} </div> <!-- product.title -->
+                        <div class="fw-bold" style="color: #0dcaf0"> {{ product.title }} </div>
                         <span>{{ product.category }}</span><br />
                         <span>{{ product.city }}</span>
                     </div>

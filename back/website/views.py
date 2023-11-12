@@ -82,3 +82,11 @@ def delete_product():
             db.session.commit()
     
     return jsonify({}) # return empty JSON only because returning something is a requirement
+
+@views.route('/test-fetch', methods=['GET'])
+def show_data():
+    return {
+            'Name':"geek",
+            "Age":22,
+            "programming":"python"
+            }
